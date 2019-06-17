@@ -1,19 +1,18 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using FibonacciGenerator;
+﻿using FibonacciGenerator;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace FibonacciTest
+namespace TestBase
 {
     [TestClass]
-    public class FibonacciTest
+    public abstract class FibonacciTest
     {
-        private Fibonacci fib;
+        protected Fibonacci fib;
+
         [TestInitialize]
-        public void Setup()
-        {
-            fib = new FibonacciRecursive();
-        }
+        public abstract void Setup();
 
         [TestMethod]
         public void TestFibonacciStart()
@@ -35,6 +34,16 @@ namespace FibonacciTest
             var list = fib.Take(10);
 
             CollectionAssert.AreEqual(trueList, list.ToList());
+        }
+    }
+
+    [TestClass]
+    public class TestRecursive : FibonacciTest
+    {
+        [TestInitialize]
+        public override void Setup()
+        {
+            fib = Fibonacci.Factory(Fibonacci.Algorithm.Recursive);
         }
     }
 }

@@ -56,7 +56,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Fibonacci\FibonacciGenerator.csproj">
+    <ProjectReference Include="..\FibonacciGenerator\FibonacciGenerator.csproj">
       <Project>{4aef142d-51dd-46fd-8b45-f46dd681964b}</Project>
       <Name>FibonacciGenerator</Name>
     </ProjectReference>
