@@ -42,6 +42,11 @@ namespace FibonacciGenerator
 
         protected abstract int GetValue(int key);
 
-        protected abstract IEnumerable<int> GetValues();
+        protected virtual IEnumerable<int> GetValues()
+        {
+            int key = 0;
+            while (true)
+                yield return GetValue(key++);
+        }
     }
 }

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace FibonacciGenerator
+﻿namespace FibonacciGenerator
 {
     public class FibonacciIterative : Fibonacci
     {
@@ -12,13 +10,6 @@ namespace FibonacciGenerator
                 (current, next) = (next, current + next);
 
             return current;
-        }
-
-        protected override IEnumerable<int> GetValues()
-        {
-            int key = 0;
-            while (true)
-                yield return GetValue(key++);
         }
     }
 }
