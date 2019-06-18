@@ -6,12 +6,15 @@ namespace FibonacciGenerator
 {
     public abstract class Fibonacci : IEnumerable<int>
     {
-        public enum Algorithm { Cached, Iterative, IterativeYield, Recursive };
+        public enum Algorithm { Cached, Direct, Iterative, IterativeYield, Recursive };
         public static Fibonacci Factory(Algorithm algorithm)
         {
             switch (algorithm)
             {
                 case Algorithm.Cached:
+                    return new FibonacciCached();
+
+                case Algorithm.Direct:
                     return new FibonacciCached();
 
                 case Algorithm.Iterative:

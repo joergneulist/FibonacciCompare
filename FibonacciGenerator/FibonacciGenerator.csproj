@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="Fibonacci.cs" />
     <Compile Include="FibonacciCached.cs" />
+    <Compile Include="FibonacciDirect.cs" />
     <Compile Include="FibonacciYield.cs" />
     <Compile Include="FibonacciIterative.cs" />
     <Compile Include="FibonacciRecursive.cs" />

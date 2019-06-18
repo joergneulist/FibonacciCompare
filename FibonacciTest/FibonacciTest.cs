@@ -47,6 +47,16 @@ namespace TestBase
     }
 
     [TestClass]
+    public class TestDirect : FibonacciTest
+    {
+        [TestInitialize]
+        public override void Setup()
+        {
+            fib = Fibonacci.Factory(Fibonacci.Algorithm.Direct);
+        }
+    }
+
+    [TestClass]
     public class TestIterative : FibonacciTest
     {
         [TestInitialize]
