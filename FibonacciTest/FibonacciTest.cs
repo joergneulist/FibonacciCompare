@@ -37,6 +37,16 @@ namespace TestBase
     }
 
     [TestClass]
+    public class TestCached : FibonacciTest
+    {
+        [TestInitialize]
+        public override void Setup()
+        {
+            fib = Fibonacci.Factory(Fibonacci.Algorithm.Cached);
+        }
+    }
+
+    [TestClass]
     public class TestIterative : FibonacciTest
     {
         [TestInitialize]
