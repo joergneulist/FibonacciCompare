@@ -39,10 +39,10 @@ namespace FibonacciCompare
         static void Main(string[] args)
         {
             var testList = new List<Test> {
-                new Test(f => f.Take(10).Last(), "List 10"),
-                new Test(f => f.Take(20).Last(), "List 20"),
-                new Test(f =>  f[0], "Fib[0]"),
-                new Test(f =>  f[5], "Fib[5]"),
+                new Test(f => f.Enumerate(10).Last(), "List 10"),
+                new Test(f => f.Enumerate(20).Last(), "List 20"),
+                new Test(f => f[0], "Fib[0]"),
+                new Test(f => f[5], "Fib[5]"),
                 new Test(f => f[10], "Fib[10]"),
                 new Test(f => f[20], "Fib[20]"),
                 new Test(f => f[40], "Fib[40]")

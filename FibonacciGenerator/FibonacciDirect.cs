@@ -16,7 +16,7 @@ namespace FibonacciGenerator
 
         protected override int GetValue(int key)
         {
-            return (int)Math.Round((Math.Pow(phi, key) - Math.Pow(psi, key)) * factor);
+            return (int) Math.Round((Math.Pow(phi, key) - Math.Pow(psi, key)) * factor);
         }
     }
 }

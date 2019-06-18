@@ -7,26 +7,22 @@ namespace FibonacciGenerator
     {
         private List<int> cache = new List<int> { 0, 1 };
 
-        private void ExtendCache()
-            => cache.Add(cache[cache.Count - 1] + cache[cache.Count - 2]);
+        private void ExtendCache(int highestNeeded)
+        {
+            while (cache.Count <= highestNeeded)
+                cache.Add(cache[cache.Count - 1] + cache[cache.Count - 2]);
+        }
 
         protected override int GetValue(int key)
         {
-            while (key >= cache.Count)
-                ExtendCache();
+            ExtendCache(key);
             return cache[key];
         }
 
-        protected override IEnumerable<int> GetValues()
+        public override IEnumerable<int> Enumerate(int listLength)
         {
-            foreach (int value in cache)
-                yield return value;
-
-            while (true)
-            {
-                ExtendCache();
-                yield return cache.Last();
-            }
+            ExtendCache(listLength - 1);
+            return cache.Take(listLength);
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace FibonacciGenerator
 {
-    public abstract class Fibonacci : IEnumerable<int>
+    public abstract class Fibonacci
     {
         public enum Algorithm { Cached, Direct, Iterative, IterativeYield, Recursive };
         public static Fibonacci Factory(Algorithm algorithm)
@@ -15,7 +16,7 @@ namespace FibonacciGenerator
                     return new FibonacciCached();
 
                 case Algorithm.Direct:
-                    return new FibonacciCached();
+                    return new FibonacciDirect();
 
                 case Algorithm.Iterative:
                     return new FibonacciIterative();
@@ -37,19 +38,11 @@ namespace FibonacciGenerator
             private set { }
         }
 
-        IEnumerator<int> IEnumerable<int>.GetEnumerator()
-            => GetValues().GetEnumerator();
-
-        IEnumerator IEnumerable.GetEnumerator()
-            => GetValues().GetEnumerator();
+        public virtual IEnumerable<int> Enumerate(int listLength)
+        {
+            return Enumerable.Range(0, listLength).Select(key => GetValue(key));
+        }
 
         protected abstract int GetValue(int key);
-
-        protected virtual IEnumerable<int> GetValues()
-        {
-            int key = 0;
-            while (true)
-                yield return GetValue(key++);
-        }
     }
 }

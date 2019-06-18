@@ -6,14 +6,14 @@ namespace FibonacciGenerator
     public class FibonacciYield : Fibonacci
     {
         protected override int GetValue(int key)
-            => GetValues().Skip(key).First();
+            => Enumerate(key + 1).Last();
 
-        protected override IEnumerable<int> GetValues()
+        public override IEnumerable<int> Enumerate(int listLength)
         {
             int current = 0;
             int next = 1;
 
-            while (true)
+            for (int key = 0; key < listLength; key++)
             {
                 yield return current;
                 (current, next) = (next, current + next);

@@ -30,7 +30,7 @@ namespace TestBase
         public void TestFibonacciList()
         {
             var trueList = new List<int> { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34 };
-            var list = fib.Take(10);
+            var list = fib.Enumerate(10);
 
             CollectionAssert.AreEqual(trueList, list.ToList());
         }
