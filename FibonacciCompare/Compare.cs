@@ -13,41 +13,43 @@ namespace FibonacciCompare
             public delegate int TestCase(Fibonacci calculator);
 
             private TestCase code;
-            private int repetitions;
             public string Name { get; set; }
 
-            public Test(TestCase testCode, int testRepetitions, string name)
+            public Test(TestCase testCode, string name)
             {
                 code = testCode;
-                repetitions = testRepetitions;
                 Name = name;
             }
 
             public double TimeExecution(Fibonacci calculator)
             {
+                int repetitions = 0;
                 var watch = Stopwatch.StartNew();
-                for (var i = 0; i < repetitions; i++)
+
+                while ((watch.ElapsedMilliseconds < 1000) || (repetitions < 3))
+                {
                     code(calculator);
+                    repetitions++;
+                }
                 watch.Stop();
                 return watch.ElapsedMilliseconds * 1000.0 / (double)repetitions;
             }
         }
 
-
-
         static void Main(string[] args)
         {
             var testList = new List<Test> {
-                new Test(f =>  f[0], 1000000, "Fib[0]"),
-                new Test(f =>  f[5], 1000000, "Fib[5]"),
-                new Test(f => f[10], 1000000, "Fib[10]"),
-                new Test(f => f[10], 1000000, "Fib[20]"),
-                new Test(f => f.Take(10).Sum(), 10, "List 10"),
-                new Test(f => f.Take(40).Sum(), 10, "List 40")
+                new Test(f => f.Take(10).Last(), "List 10"),
+                new Test(f => f.Take(20).Last(), "List 20"),
+                new Test(f =>  f[0], "Fib[0]"),
+                new Test(f =>  f[5], "Fib[5]"),
+                new Test(f => f[10], "Fib[10]"),
+                new Test(f => f[20], "Fib[20]"),
+                new Test(f => f[40], "Fib[40]")
             };
 
             Console.WriteLine("{0,20} | {1}", "Algorithm", string.Join(" | ", testList.Select(test => string.Format("{0,10}", test.Name))));
-
+            Console.WriteLine(new string('-', 21) + "+-" + string.Join("-+-", testList.Select(test => new string('-', 10))));
 
             foreach (var algorithm in Enum.GetValues(typeof(Fibonacci.Algorithm)).Cast<Fibonacci.Algorithm>())
             {
